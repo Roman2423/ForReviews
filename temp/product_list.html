@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Список продуктів</h1>
+  <ul>
+    {% for product in products %}
+      <li>
+        <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a> - {{ product.price }} грн.
+      </li>
+    {% empty %}
+      <li>Немає доступих продуктів</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

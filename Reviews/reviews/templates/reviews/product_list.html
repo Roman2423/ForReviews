@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин продуктів</title>
+</head>
+<body>
+{% block content %}
+  <h1>Список продуктів</h1>
+  <ul>
+    {% for product in products %}
+      <li>
+        <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a> - {{ product.price }} грн.
+      </li>
+    {% empty %}
+      <li>Немає доступих продуктів</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+</body>
+</html>

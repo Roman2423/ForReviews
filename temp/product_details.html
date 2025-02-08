@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ product.name }}</h1>
+  <p>{{ product.description }}</p>
+  <p>Ціна: {{ product.price }} грн.</p>
+
+  <h2>Залишити відгук</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Надіслати відгук</button>
+  </form>
+
+  <h2>Відгуки</h2>
+  {% if reviews %}
+    {% for review in reviews %}
+      <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+        <strong>{{ review.author }}</strong> (рейтинг: {{ review.rating }})<br>
+        <p>{{ review.text }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>Відгуків ще немає.</p>
+  {% endif %}
+
+  <p><a href="{% url 'product_list' %}">Повернутись до списку продуктів</a></p>
+{% endblock %}
